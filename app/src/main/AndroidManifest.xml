@@ -12,6 +12,76 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MixiTable">
         <activity
+            android:name=".usuario.DatosCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.General"
+            android:exported="false" />
+        <activity
+            android:name=".fav.VerCarpeta"
+            android:exported="false" />
+        <activity
+            android:name=".fav.CrearCarpeta"
+            android:exported="false" />
+        <activity
+            android:name=".fav.Main"
+            android:exported="false" />
+        <activity
+            android:name=".reservas.ReservasPasadas"
+            android:exported="false" />
+        <activity
+            android:name=".reservas.ReservasActivas"
+            android:exported="false" />
+        <activity
+            android:name=".home.ConfirmacionPedido"
+            android:exported="false" />
+        <activity
+            android:name=".home.DetalleReserva"
+            android:exported="false" />
+        <activity
+            android:name=".home.DetallePedido"
+            android:exported="false" />
+        <activity
+            android:name=".home.CartaRestaurante"
+            android:exported="false" />
+        <activity
+            android:name=".home.Restaurante"
+            android:exported="false" />
+        <activity
+            android:name=".home.MapaDetalle"
+            android:exported="false" />
+        <activity
+            android:name=".home.Mapa"
+            android:exported="false" />
+        <activity
+            android:name=".home.Main"
+            android:exported="false" />
+        <activity
+            android:name=".login.Rol"
+            android:exported="false" />
+        <activity
+            android:name=".login.InicioSesion"
+            android:exported="false" />
+        <activity
+            android:name=".login.Crearcuenta"
+            android:exported="false" />
+        <activity
+            android:name=".LoginSesionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginInicioSesionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginCrearCuentaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.Inicio"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
