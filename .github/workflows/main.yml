@@ -1,0 +1,47 @@
+name: CI/CD Pipeline Seguro
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Obtención del código
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Construcción de la Imagen
+      - name: Build Docker Image
+        run: docker build -t mi-app:${{ github.sha }} .
+
+      # 3. Pruebas Unitarias (Dentro del contenedor)
+      - name: Run Unit Tests
+        run: |
+          docker run --rm --entrypoint sh mi-app:${{ github.sha }} -c "npm install jest supertest && npm test"
+
+      # 4. Auditoría de Seguridad (Trivy)
+      - name: Security Scan (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'mi-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+
+      # 5. Login en Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 6. Despliegue (Push)
+      - name: Push to Registry
+        run: |
+          docker tag mi-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/mi-app:${{ github.sha }}
+          docker tag mi-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/mi-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/mi-app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/mi-app:latest
