@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MixiTable">
         <activity
+            android:name=".onboarding.Saludo"
+            android:exported="false"
+            android:theme="@style/Theme.MixiTable" />
+        <activity
             android:name=".onboarding.Crear_6"
             android:exported="false" />
         <activity
@@ -28,10 +32,6 @@
         <activity
             android:name=".onboarding.Crear_1"
             android:exported="false" />
-        <activity
-            android:name=".onboarding.Saludo"
-            android:exported="false"
-            android:theme="@style/Theme.MixiTable" />
         <activity
             android:name=".onboarding.Main"
             android:exported="false" />
